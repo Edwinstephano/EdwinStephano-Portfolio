@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 export default function ContactForm() {
   const [status, setStatus] = useState({ state: 'idle', message: '' })
   const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [toast, setToast] = useState({ show: false, message: '' })
 
   const onChange = (e) => {
     setStatus({ state: 'idle', message: '' })
@@ -25,9 +26,9 @@ export default function ContactForm() {
   }
 
   const handleSubmit = async (e) => {
+    e.preventDefault()
     const error = validate()
     if (error) {
-      e.preventDefault()
       setStatus({ state: 'error', message: error })
       return
     }
@@ -35,7 +36,6 @@ export default function ContactForm() {
       setStatus({ state: 'loading', message: 'Sending…' })
       const formspreeId = import.meta.env.VITE_FORMSPREE_ID
       if (formspreeId) {
-        e.preventDefault()
         const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -45,13 +45,35 @@ export default function ContactForm() {
         if (res.ok) {
           setStatus({ state: 'success', message: 'Thanks! Your message is on the way.' })
           setForm({ name: '', email: '', message: '' })
+          setToast({ show: true, message: 'Message sent!' })
+          setTimeout(() => setToast({ show: false, message: '' }), 2500)
           return
         }
         throw new Error(data.error || 'Formspree error')
       } else {
-        // Native submit to Netlify Forms (no AJAX)
-        // Allow the browser to POST the form; Netlify will capture it.
-        // Status will reset on navigation; Netlify will redirect back to our hash.
+        // AJAX submit to Netlify Forms
+        const body = new URLSearchParams({
+          'form-name': 'contact',
+          'bot-field': '',
+          name: form.name,
+          email: form.email,
+          message: form.message
+        }).toString()
+
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
+          body
+        })
+
+        if (res.ok || [200, 201, 202, 204, 303].includes(res.status)) {
+          setStatus({ state: 'success', message: 'Thanks! Your message is on the way.' })
+          setForm({ name: '', email: '', message: '' })
+          setToast({ show: true, message: 'Message sent!' })
+          setTimeout(() => setToast({ show: false, message: '' }), 2500)
+        } else {
+          throw new Error(`Netlify Forms submission failed (status ${res.status})`)
+        }
       }
     } catch (err) {
       setStatus({
@@ -62,12 +84,13 @@ export default function ContactForm() {
   }
 
   return (
+    <>
     <form
       name="contact"
       method="POST"
       data-netlify="true"
       netlify-honeypot="bot-field"
-      action="/success.html"
+      action="/"
       acceptCharset="UTF-8"
       onSubmit={handleSubmit}
       className="card p-6"
@@ -157,5 +180,22 @@ export default function ContactForm() {
         </label>
       </p>
     </form>
+
+    {/* Toast */}
+    <AnimatePresence>
+      {toast.show && (
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          className="fixed right-4 bottom-4 z-50 rounded-lg border border-slate-300 dark:border-slate-600 bg-white/90 dark:bg-white/[0.06] px-4 py-2 shadow-lg"
+          role="status"
+          aria-live="polite"
+        >
+          {toast.message}
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </>
   )
 }
