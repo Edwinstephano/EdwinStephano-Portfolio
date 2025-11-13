@@ -5,6 +5,11 @@
 [build.environment]
   NODE_VERSION = "18"
 
+[[redirects]]
+  from = "/success.html"
+  to = "/success.html"
+  status = 200
+
 # SPA fallback so React Router routes work on refresh
 [[redirects]]
   from = "/*"
