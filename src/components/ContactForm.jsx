@@ -51,6 +51,7 @@ export default function ContactForm() {
         // Submit to Netlify Forms (requires hidden static form in index.html)
         const body = new URLSearchParams({
           'form-name': 'contact',
+          'bot-field': '',
           name: form.name,
           email: form.email,
           message: form.message
@@ -62,17 +63,18 @@ export default function ContactForm() {
           body
         })
 
-        if (res.ok) {
+        // Success if Netlify accepts or redirects
+        if (res.ok || [200, 201, 202, 204, 303].includes(res.status)) {
           setStatus({ state: 'success', message: 'Thanks! Your message is on the way.' })
           setForm({ name: '', email: '', message: '' })
         } else {
-          throw new Error('Netlify Forms submission failed')
+          throw new Error(`Netlify Forms submission failed (status ${res.status})`)
         }
       }
     } catch (err) {
       setStatus({
         state: 'error',
-        message: 'Something went wrong. Try again or email me directly: edwinstephano23@gmail.com'
+        message: `Something went wrong. ${err?.message ? err.message + ' — ' : ''}Try again or email me directly: edwinstephano23@gmail.com`
       })
     }
   }
