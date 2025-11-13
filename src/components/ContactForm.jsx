@@ -67,7 +67,7 @@ export default function ContactForm() {
       method="POST"
       data-netlify="true"
       netlify-honeypot="bot-field"
-      action="/"
+      action="/success.html"
       acceptCharset="UTF-8"
       onSubmit={handleSubmit}
       className="card p-6"
