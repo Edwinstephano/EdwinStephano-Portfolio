@@ -59,7 +59,7 @@ export default function ContactForm() {
 
         const res = await fetch('/', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
           body
         })
 
@@ -84,6 +84,9 @@ export default function ContactForm() {
       name="contact"
       method="POST"
       data-netlify="true"
+      netlify-honeypot="bot-field"
+      action="/"
+      acceptCharset="UTF-8"
       onSubmit={handleSubmit}
       className="card p-6"
       aria-labelledby="contact-title"
