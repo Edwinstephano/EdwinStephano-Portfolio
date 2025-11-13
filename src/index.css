@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles and CSS variables for glassmorphism accents */
+:root {
+  --color-primary: #0ea5a4;
+  --color-accent: #7c3aed;
+  --muted: #94a3b8;
+}
+
+/* Theme presets: set CSS variables; persisted in localStorage and applied as a class on <html> */
+.theme-teal { --color-primary: #0ea5a4; --color-accent: #7c3aed; }
+.theme-purple { --color-primary: #7c3aed; --color-accent: #0ea5a4; }
+.theme-sunset { --color-primary: #fb7185; --color-accent: #f59e0b; }
+.theme-forest { --color-primary: #10b981; --color-accent: #065f46; }
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+* {
+  @apply selection:bg-primary/20 selection:text-neutral;
+}
+
+/* Reusable utility classes */
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-lg px-4 py-2 font-medium transition
+      shadow-soft hover:shadow focus:outline-none focus-visible:ring-2
+      focus-visible:ring-primary/60 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral;
+  }
+  .btn-primary {
+    @apply btn text-white hover:brightness-95;
+    background-color: var(--color-primary);
+  }
+  .btn-secondary {
+    @apply btn border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-white/10;
+  }
+  .card {
+    @apply rounded-xl border border-slate-200/60 dark:border-white/10
+      bg-white/80 dark:bg-white/[0.04] backdrop-blur supports-[backdrop-filter]:bg-white/50
+      dark:supports-[backdrop-filter]:bg-white/[0.06] shadow-soft;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full bg-slate-100 dark:bg-white/10 px-3 py-1 text-xs font-medium;
+  }
+  .gradient-border {
+    position: relative;
+    border-radius: 0.75rem; /* match rounded-xl */
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    -webkit-mask: 
+      linear-gradient(#000 0 0) content-box, 
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  /* Subtle hover shine utility for buttons/cards */
+  .shine {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .shine::after {
+    content: '';
+    position: absolute;
+    inset: -150% -50% auto auto;
+    width: 40%;
+    height: 300%;
+    transform: rotate(25deg);
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255,255,255,0.5) 10%,
+      rgba(255,255,255,0.15) 22%,
+      transparent 32%
+    );
+    opacity: 0;
+    pointer-events: none;
+  }
+  .shine:hover::after {
+    animation: shine-sweep 900ms var(--ease, cubic-bezier(.2,.8,.2,1));
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .hover-lift {
+    @apply transition-transform will-change-transform hover:-translate-y-0.5;
+  }
+  .typing {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid currentColor;
+    animation: typing 2.4s steps(24, end) forwards;
+  }
+}
+
+@keyframes shine-sweep {
+  0% { transform: translate3d(0,0,0) rotate(25deg); }
+  100% { transform: translate3d(-240%,0,0) rotate(25deg); }
+}
+
+@keyframes typing {
+  0% { width: 0; border-right-color: currentColor }
+  100% { width: 100%; border-right-color: transparent }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edwin Stephano — Full-Stack Developer</title>
+    <meta name="description" content="I build fast, accessible web apps using React and modern tooling." />
+    <link rel="canonical" href="https://your-domain.example.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Edwin Stephano — Full-Stack Developer" />
+    <meta property="og:description" content="I build fast, accessible web apps using React and modern tooling." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://your-domain.example.com/" />
+    <meta property="og:image" content="/social-card.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Edwin Stephano — Full-Stack Developer" />
+    <meta name="twitter:description" content="I build fast, accessible web apps using React and modern tooling." />
+    <meta name="twitter:image" content="/social-card.png" />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Fonts: preconnect + load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Prevent theme flash: set class on html early -->
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const persisted = localStorage.getItem('theme');
+        const mql = window.matchMedia('(prefers-color-scheme: dark)');
+        const prefersDark = mql.matches;
+        const theme = persisted ?? (prefersDark ? 'dark' : 'light');
+        if (theme === 'dark') root.classList.add('dark');
+        const palette = localStorage.getItem('palette');
+        if (palette) root.classList.add(palette);
+      })();
+    </script>
+
+    <link rel="alternate" type="application/feed+json" href="/feed.json" />
+  </head>
+  <body class="bg-lightbg text-slate-800 dark:bg-neutral dark:text-slate-200 antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Hidden Netlify form for backend detection -->
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <p style="display:none">
+        <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+      </p>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+    </form>
+  </body>
+</html>
