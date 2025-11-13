@@ -60,7 +60,7 @@ export default function ContactForm() {
           message: form.message
         }).toString()
 
-        const res = await fetch('/', {
+        const res = await fetch('/contact.html', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
           body

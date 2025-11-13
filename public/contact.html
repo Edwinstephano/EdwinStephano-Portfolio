@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact</title>
+  </head>
+  <body>
+    <!-- Static Netlify form for detection -->
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact.html">
+      <input type="hidden" name="form-name" value="contact" />
+      <p hidden>
+        <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+      </p>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </body>
+</html>
