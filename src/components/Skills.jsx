@@ -5,6 +5,7 @@ export default function Skills() {
   const icons = {
     React: '⚛️',
     Python: '🐍',
+    Frappe: '',
     Django: '🌿',
     JavaScript: '🟨',
     HTML5: '🧱',
