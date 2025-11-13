@@ -25,9 +25,9 @@ export default function ContactForm() {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
     const error = validate()
     if (error) {
+      e.preventDefault()
       setStatus({ state: 'error', message: error })
       return
     }
@@ -35,6 +35,7 @@ export default function ContactForm() {
       setStatus({ state: 'loading', message: 'Sending…' })
       const formspreeId = import.meta.env.VITE_FORMSPREE_ID
       if (formspreeId) {
+        e.preventDefault()
         const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -48,28 +49,9 @@ export default function ContactForm() {
         }
         throw new Error(data.error || 'Formspree error')
       } else {
-        // Submit to Netlify Forms (requires hidden static form in index.html)
-        const body = new URLSearchParams({
-          'form-name': 'contact',
-          'bot-field': '',
-          name: form.name,
-          email: form.email,
-          message: form.message
-        }).toString()
-
-        const res = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
-          body
-        })
-
-        // Success if Netlify accepts or redirects
-        if (res.ok || [200, 201, 202, 204, 303].includes(res.status)) {
-          setStatus({ state: 'success', message: 'Thanks! Your message is on the way.' })
-          setForm({ name: '', email: '', message: '' })
-        } else {
-          throw new Error(`Netlify Forms submission failed (status ${res.status})`)
-        }
+        // Native submit to Netlify Forms (no AJAX)
+        // Allow the browser to POST the form; Netlify will capture it.
+        // Status will reset on navigation; Netlify will redirect back to our hash.
       }
     } catch (err) {
       setStatus({
