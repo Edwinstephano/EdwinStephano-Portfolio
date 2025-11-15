@@ -30,12 +30,87 @@ html:focus-within {
       shadow-soft hover:shadow focus:outline-none focus-visible:ring-2
       focus-visible:ring-primary/60 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral;
   }
+
+  /* Blinking caret for heading */
+  .caret {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    margin-left: 8px;
+    vertical-align: -2px;
+    background: currentColor;
+    opacity: 0.8;
+    animation: caret-blink 1s steps(1, end) infinite;
+  }
+
+  /* Cinematic bokeh background for hero */
+  .bokeh-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+  }
+  .bokeh-dot {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(10px);
+    opacity: 0.25;
+    background: radial-gradient(circle, rgba(255,214,165,0.8), rgba(255,214,165,0) 60%);
+    animation: bokeh-float 18s ease-in-out infinite;
+  }
+
+  /* Feather particle sparkles */
+  .particle {
+    position: absolute;
+    width: 6px; height: 6px;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(56,189,248,0.95), rgba(56,189,248,0));
+    box-shadow: 0 0 12px rgba(56,189,248,0.8), 0 0 20px rgba(16,185,129,0.6);
+    opacity: 0;
+    animation: particle-pop 1400ms ease-out infinite;
+  }
+
+  .feather-glow {
+    filter: drop-shadow(0 4px 16px rgba(59,130,246,0.6)) drop-shadow(0 0 24px rgba(16,185,129,0.4));
+  }
+  /* Peacock hero heading styles */
+  .peacock-text {
+    background: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6, #db2777);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+  }
+  .peacock-underline {
+    position: relative;
+  }
+  .peacock-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    height: 4px;
+    width: 0;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, rgba(6,182,212,.9), rgba(59,130,246,.9), rgba(139,92,246,.9), rgba(219,39,119,.9));
+    filter: drop-shadow(0 4px 10px rgba(139,92,246,.35));
+    animation: peacock-sweep 1.2s cubic-bezier(.2,.8,.2,1) forwards 0.2s;
+  }
   .btn-primary {
     @apply btn text-white hover:brightness-95;
     background-color: var(--color-primary);
+    box-shadow: 0 0 0 rgba(14,165,164,0);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 8px 24px rgba(14,165,164,0.25);
   }
   .btn-secondary {
     @apply btn border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-white/10;
+  }
+  /* Press effect */
+  .btn:active {
+    transform: translateY(0.5px) scale(0.985);
+    transition-timing-function: cubic-bezier(.2,.8,.2,1);
   }
   .card {
     @apply rounded-xl border border-slate-200/60 dark:border-white/10
@@ -105,14 +180,45 @@ html:focus-within {
   }
 }
 
+.custom-cursor body, .custom-cursor * { cursor: none !important; }
+
 @keyframes shine-sweep {
   0% { transform: translate3d(0,0,0) rotate(25deg); }
   100% { transform: translate3d(-240%,0,0) rotate(25deg); }
 }
 
+/* Underline sweep for peacock heading */
+@keyframes peacock-sweep {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+/* Floating golden bokeh lights */
+@keyframes bokeh-float {
+  0%   { transform: translate3d(0, 10px, 0) scale(1); opacity: 0.2; }
+  25%  { transform: translate3d(-20px, -10px, 0) scale(1.08); opacity: 0.3; }
+  50%  { transform: translate3d(10px, -20px, 0) scale(0.95); opacity: 0.22; }
+  75%  { transform: translate3d(20px, 5px, 0) scale(1.05); opacity: 0.28; }
+  100% { transform: translate3d(0, 10px, 0) scale(1); opacity: 0.2; }
+}
+
+/* Sparkling particles from feather */
+@keyframes particle-pop {
+  0%   { transform: translate3d(0,0,0) scale(0.6); opacity: 0; }
+  10%  { opacity: 1; }
+  60%  { transform: translate3d(12px, -16px, 0) scale(1.1); opacity: 0.9; }
+  100% { transform: translate3d(24px, -26px, 0) scale(0.8); opacity: 0; }
+}
+
 @keyframes typing {
   0% { width: 0; border-right-color: currentColor }
   100% { width: 100%; border-right-color: transparent }
+}
+
+/* Blinking caret */
+@keyframes caret-blink {
+  0%, 49% { opacity: 0.9 }
+  50%, 100% { opacity: 0 }
 }
 
 /* Respect reduced motion */

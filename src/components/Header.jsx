@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { MoonIcon, SunIcon, MenuIcon, XIcon } from './Icons'
 
 const navItems = [
   { href: '/#home', label: 'Home' },
-  { href: '/#projects', label: 'Projects' },
   { href: '/#about', label: 'About' },
+  { href: '/#projects', label: 'Projects' },
   { href: '/#skills', label: 'Skills' },
   { href: '/#experience', label: 'Experience' },
   { href: '/#contact', label: 'Contact' },
@@ -56,15 +57,36 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2 font-heading text-lg font-bold">
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">ES</span>
-            <span>Edwin Stephano</span>
+            <span>Edwin Stephano J</span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6" aria-label="Main">
+          <nav className="hidden md:flex items-center gap-6 relative" aria-label="Main">
             {navItems.map((n) =>
               n.href.startsWith('/#') ? (
-                <a key={n.href} href={n.href} className="group relative hover:text-primary transition-colors">
+                <a
+                  key={n.href}
+                  href={n.href}
+                  onClick={(e) => {
+                    if (location.pathname === '/') {
+                      e.preventDefault()
+                      const id = n.href.slice(1) // "#section"
+                      const el = document.querySelector(id)
+                      if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                        history.replaceState(null, '', n.href)
+                      }
+                    }
+                  }}
+                  className="group relative hover:text-primary transition-colors"
+                >
                   {n.label}
-                  <span className="pointer-events-none absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+                  {`/${location.hash}` === n.href && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="pointer-events-none absolute -bottom-1 left-0 h-0.5 bg-primary"
+                      style={{ width: '100%' }}
+                    />
+                  )}
                 </a>
               ) : (
                 <NavLink
@@ -75,7 +97,13 @@ export default function Header() {
                   }
                 >
                   {n.label}
-                  <span className={`pointer-events-none absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${window.location?.pathname === n.href ? 'w-full' : 'w-0'} group-hover:w-full`} />
+                  {location.pathname === n.href && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="pointer-events-none absolute -bottom-1 left-0 h-0.5 bg-primary"
+                      style={{ width: '100%' }}
+                    />
+                  )}
                 </NavLink>
               )
             )}
@@ -107,7 +135,22 @@ export default function Header() {
           <div className="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-2">
             {navItems.map((n) =>
               n.href.startsWith('/#') ? (
-                <a key={n.href} href={n.href} className="py-2 hover:text-primary">
+                <a
+                  key={n.href}
+                  href={n.href}
+                  onClick={(e) => {
+                    if (location.pathname === '/') {
+                      e.preventDefault()
+                      const id = n.href.slice(1)
+                      const el = document.querySelector(id)
+                      if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                        history.replaceState(null, '', n.href)
+                      }
+                    }
+                  }}
+                  className="py-2 hover:text-primary"
+                >
                   {n.label}
                 </a>
               ) : (

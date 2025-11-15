@@ -7,6 +7,8 @@ import App from './App'
 
 const ProjectsPage = lazy(() => import('./pages/Projects'))
 const BlogPage = lazy(() => import('./pages/Blog'))
+const CaseStudyPage = lazy(() => import('./pages/CaseStudy'))
+const BookPage = lazy(() => import('./pages/Book'))
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -26,11 +28,31 @@ function AnimatedRoutes() {
           }
         />
         <Route
+          path="/projects/:slug"
+          element={
+            <Suspense fallback={<div className="p-8">Loading case study…</div>}>
+              <motion.div initial="hidden" animate="show" exit="exit" transition={{ duration: 0.35, ease: 'easeOut' }} variants={variants}>
+                <CaseStudyPage />
+              </motion.div>
+            </Suspense>
+          }
+        />
+        <Route
           path="/blog"
           element={
             <Suspense fallback={<div className="p-8">Loading blog…</div>}>
               <motion.div initial="hidden" animate="show" exit="exit" transition={{ duration: 0.35, ease: 'easeOut' }} variants={variants}>
                 <BlogPage />
+              </motion.div>
+            </Suspense>
+          }
+        />
+        <Route
+          path="/book"
+          element={
+            <Suspense fallback={<div className="p-8">Loading…</div>}>
+              <motion.div initial="hidden" animate="show" exit="exit" transition={{ duration: 0.35, ease: 'easeOut' }} variants={variants}>
+                <BookPage />
               </motion.div>
             </Suspense>
           }

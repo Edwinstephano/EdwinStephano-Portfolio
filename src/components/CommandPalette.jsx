@@ -6,7 +6,10 @@ const ACTIONS = [
   { id: 'go-projects-section', label: 'Go to Projects (section)', run: () => (window.location.href = '/#projects') },
   { id: 'open-projects', label: 'Open /projects', run: () => (window.location.href = '/projects') },
   { id: 'open-blog', label: 'Open /blog', run: () => (window.location.href = '/blog') },
+  { id: 'open-contact', label: 'Open Contact', run: () => (window.location.href = '/#contact') },
+  { id: 'book-call', label: 'Book a Call', run: () => (window.location.href = '/book') },
   { id: 'download-resume', label: 'Download Resume', run: () => window.open('/resume.pdf', '_blank', 'noopener') },
+  { id: 'open-welcome', label: 'Show Welcome Popup', run: () => window.dispatchEvent(new Event('open-welcome')) },
   {
     id: 'toggle-theme',
     label: 'Toggle Theme (Light/Dark)',

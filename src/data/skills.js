@@ -2,10 +2,11 @@ const skills = [
   'React',
   'Python',
   'Django',
+  'Frappe',
   'JavaScript',
   'HTML5',
   'Tailwind CSS',
-  'PostgreSQL',
+  'ERPNext',
   'Vite',
   'Git',
 ]

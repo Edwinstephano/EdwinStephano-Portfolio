@@ -1,19 +1,44 @@
 export default function Blog() {
   // Static list sample; replace with your own CMS or markdown pipeline
   const posts = [
-    {
-      title: 'Hello, World',
-      date: 'Jan 1, 2025',
-      excerpt: 'Welcome to my blog! I write about React, UX, and performance.',
-      url: '#'
-    },
-    {
-      title: 'Improving Lighthouse scores',
-      date: 'Feb 8, 2025',
-      excerpt: 'Practical tips for hitting 90+ across the board.',
-      url: '#'
-    }
-  ]
+  {
+    title: 'Hello, World',
+    date: 'Jan 1, 2025',
+    excerpt: 'Welcome to my blog! I write about React, UX, and performance.',
+    url: '#'
+  },
+  {
+    title: 'Improving Lighthouse scores',
+    date: 'Feb 8, 2025',
+    excerpt: 'Practical tips for hitting 90+ across the board.',
+    url: '#'
+  },
+  {
+    title: 'Building Modern APIs with FastAPI',
+    date: 'Mar 12, 2025',
+    excerpt: 'A beginner-friendly guide to creating blazing fast Python APIs.',
+    url: '#'
+  },
+  {
+    title: 'Creating Smooth Animations with Framer Motion',
+    date: 'Apr 4, 2025',
+    excerpt: 'Learn how to add clean, fluid animations to your React projects.',
+    url: '#'
+  },
+  {
+    title: 'Mastering Frappe Framework Basics',
+    date: 'May 10, 2025',
+    excerpt: 'Understanding DocTypes, APIs, server scripts, and webhooks.',
+    url: '#'
+  },
+  {
+    title: 'My Portfolio Redesign Journey',
+    date: 'Jun 2, 2025',
+    excerpt: 'How I rebuilt my portfolio with better UI, animations, and UX.',
+    url: '#'
+  }
+]
+
   return (
     <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="font-heading text-3xl font-bold">Blog</h1>

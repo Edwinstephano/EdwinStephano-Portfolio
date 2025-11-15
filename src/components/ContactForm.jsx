@@ -51,29 +51,12 @@ export default function ContactForm() {
         }
         throw new Error(data.error || 'Formspree error')
       } else {
-        // AJAX submit to Netlify Forms
-        const body = new URLSearchParams({
-          'form-name': 'contact',
-          'bot-field': '',
-          name: form.name,
-          email: form.email,
-          message: form.message
-        }).toString()
-
-        const res = await fetch('/contact.html', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
-          body
-        })
-
-        if (res.ok || [200, 201, 202, 204, 303].includes(res.status)) {
-          setStatus({ state: 'success', message: 'Thanks! Your message is on the way.' })
-          setForm({ name: '', email: '', message: '' })
-          setToast({ show: true, message: 'Message sent!' })
-          setTimeout(() => setToast({ show: false, message: '' }), 2500)
-        } else {
-          throw new Error(`Netlify Forms submission failed (status ${res.status})`)
-        }
+        // Fallback: native submit to FormSubmit to deliver email without extra setup
+        setStatus({ state: 'idle', message: '' })
+        setToast({ show: true, message: 'Sending…' })
+        // Allow native submission
+        const formEl = e.currentTarget
+        formEl.submit()
       }
     } catch (err) {
       setStatus({
@@ -88,9 +71,7 @@ export default function ContactForm() {
     <form
       name="contact"
       method="POST"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      action="/"
+      action="https://formsubmit.co/edwinstephano23@gmail.com"
       acceptCharset="UTF-8"
       onSubmit={handleSubmit}
       className="card p-6"
@@ -145,6 +126,7 @@ export default function ContactForm() {
 
       <div className="mt-4 flex items-center gap-3">
         <button type="submit" className="btn-primary">Send Message</button>
+       
         <span role="status" className="text-sm">
           {status.state === 'loading' && 'Sending…'}
           <AnimatePresence>
@@ -172,13 +154,10 @@ export default function ContactForm() {
         )}
       </AnimatePresence>
 
-      {/* Netlify honeypot */}
-      <input type="hidden" name="form-name" value="contact" />
-      <p className="hidden">
-        <label>
-          Don’t fill this out if you're human: <input name="bot-field" />
-        </label>
-      </p>
+      {/* FormSubmit config */}
+      <input type="hidden" name="_next" value="https://edwinstephano-portfolio.netlify.app/?sent=1" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_subject" value="New portfolio contact" />
     </form>
 
     {/* Toast */}
