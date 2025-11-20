@@ -35,6 +35,7 @@ export default function Header() {
     localStorage.setItem('theme', theme)
   }, [theme])
 
+
   // Close mobile menu on route change
   useEffect(() => {
     setOpen(false)

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import certificates from '../data/certificates'
 
 export default function Certificates() {
@@ -23,9 +24,7 @@ export default function Certificates() {
                   <h3 className="font-medium">{c.title}</h3>
                   <p className="text-sm text-slate-600 dark:text-slate-400">{c.issuer} • {c.date}</p>
                 </div>
-                {c.link && (
-                  <a href={c.link} target="_blank" rel="noreferrer" className="btn-secondary whitespace-nowrap">View</a>
-                )}
+                <Link to={`/certificates/${c.id}`} className="btn-secondary whitespace-nowrap">View</Link>
               </div>
             </motion.li>
           ))}

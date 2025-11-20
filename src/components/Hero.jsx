@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { ExternalLinkIcon } from './Icons'
 import OrbitBadges from './OrbitBadges'
+import ThreeBackground from './ThreeBackground'
 
 export default function Hero() {
   const prefersReduced = useReducedMotion()
@@ -56,6 +57,7 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative">
+      <ThreeBackground />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <motion.div
           initial="hidden"

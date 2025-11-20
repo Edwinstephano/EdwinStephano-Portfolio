@@ -9,6 +9,7 @@ const ProjectsPage = lazy(() => import('./pages/Projects'))
 const BlogPage = lazy(() => import('./pages/Blog'))
 const CaseStudyPage = lazy(() => import('./pages/CaseStudy'))
 const BookPage = lazy(() => import('./pages/Book'))
+const CertificatePage = lazy(() => import('./pages/Certificate'))
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -53,6 +54,16 @@ function AnimatedRoutes() {
             <Suspense fallback={<div className="p-8">Loading…</div>}>
               <motion.div initial="hidden" animate="show" exit="exit" transition={{ duration: 0.35, ease: 'easeOut' }} variants={variants}>
                 <BookPage />
+              </motion.div>
+            </Suspense>
+          }
+        />
+        <Route
+          path="/certificates/:id"
+          element={
+            <Suspense fallback={<div className="p-8">Loading certificate…</div>}>
+              <motion.div initial="hidden" animate="show" exit="exit" transition={{ duration: 0.35, ease: 'easeOut' }} variants={variants}>
+                <CertificatePage />
               </motion.div>
             </Suspense>
           }
