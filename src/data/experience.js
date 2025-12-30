@@ -4,8 +4,8 @@ const experience = [
     role: 'Full Stack Developer',
     period: '2025 — Present',
     summary:
-      'Led frontend architecture, implemented design system, and improved Core Web Vitals to 95+.'
+      'Working as a Full Stack Developer at BoscoSoft Technologies Pvt. Ltd. As a Frappe And ERPNext Developer, I have experience in building custom applications and integrations for businesses. '
   },
-  
+
 ]
 export default experience
