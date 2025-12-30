@@ -4,9 +4,10 @@ import Home from './pages/Home'
 import CommandPalette from './components/CommandPalette'
 import TopProgress from './components/TopProgress'
 import WelcomePopup from './components/WelcomePopup'
-import ChatBot from './components/ChatBot'
-import { useEffect } from 'react'
+import { useEffect, Suspense, lazy } from 'react'
 import { useLocation } from 'react-router-dom'
+
+const ChatBot = lazy(() => import('./components/ChatBot'))
 
 export default function App() {
   const location = useLocation()
@@ -25,7 +26,9 @@ export default function App() {
       <TopProgress />
       <CommandPalette />
       <WelcomePopup />
-      <ChatBot />
+      <Suspense fallback={null}>
+        <ChatBot />
+      </Suspense>
       <Header />
       <main id="main" className="min-h-screen">
         <Home />

@@ -127,13 +127,22 @@ export default function ThreeBackground() {
   // Default ON: only disable when user prefers reduced motion
   if (prefersReduced) return null
 
+  // Optimize for mobile: reduce count and DPR
+  const isMobile = useMemo(() => {
+    if (typeof window === 'undefined') return false
+    return window.innerWidth < 768
+  }, [])
+
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-      <Canvas camera={{ position: [0, 0, 3.2], fov: 55 }} dpr={[1, 1.75]}
-        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}>
+      <Canvas
+        camera={{ position: [0, 0, 3.2], fov: 55 }}
+        dpr={[1, isMobile ? 1.25 : 1.5]}
+        gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
+      >
         <fog attach="fog" args={[new THREE.Color(0x000000), 6, 12]} />
-        <Particles />
-        <Sparkles />
+        <Particles count={isMobile ? 300 : 800} />
+        <Sparkles count={isMobile ? 80 : 140} />
       </Canvas>
     </div>
   )

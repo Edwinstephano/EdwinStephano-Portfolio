@@ -12,7 +12,16 @@ export default defineConfig({
     port: 5173
   },
   build: {
-    sourcemap: true
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          three: ['three', '@react-three/fiber', '@react-three/drei'],
+          framer: ['framer-motion']
+        }
+      }
+    }
   },
   test: {
     environment: 'jsdom',
