@@ -3,77 +3,89 @@ import { motion } from 'framer-motion'
 
 export default function Skills() {
   const iconFor = (name) => {
-    switch (name) {
-      case 'React':
-        return (
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden className="text-[#61dafb]">
-            <g fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="12" cy="12" r="2"/><ellipse rx="8" ry="3.5" transform="rotate(60 12 12)" cx="12" cy="12"/><ellipse rx="8" ry="3.5" transform="rotate(-60 12 12)" cx="12" cy="12"/><ellipse rx="8" ry="3.5" cx="12" cy="12"/></g>
-          </svg>
-        )
-      case 'JavaScript':
-        return (
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden className="text-[#f7df1e]"><rect width="18" height="18" x="3" y="3" rx="3" fill="currentColor"/></svg>
-        )
-      case 'HTML5':
-        return (
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden className="text-[#e34f26]"><path fill="currentColor" d="M4 3h16l-1.6 18.1L12 23l-6.4-1.9L4 3zm12.2 5.6.2-2.3H7.6l.3 3.5h6.8l-.3 3.2L12 14.1l-2.4-.8-.2-2.1H7l.4 3.9L12 17l4.6-1.9.6-6.5z"/></svg>
-        )
-      case 'Tailwind CSS':
-        return (
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden className="text-[#38bdf8]"><path fill="currentColor" d="M12 5c-3 0-4.8 1.5-5.4 4.6 1.1-1.5 2.4-2.1 3.8-1.8.83.18 1.43.9 2.09 1.69C13.38 10.52 14.35 11.6 16.8 11.6c3 0 4.8-1.5 5.4-4.6-1.1 1.5-2.4 2.1-3.8 1.8-.83-.18-1.43-.9-2.09-1.69C15.62 6.08 14.65 5 12.2 5H12zm-6.6 7.4c-3 0-4.8 1.5-5.4 4.6 1.1-1.5 2.4-2.1 3.8-1.8.83.18 1.43.9 2.09 1.69.9 1.11 1.87 2.19 4.32 2.19 3 0 4.8-1.5 5.4-4.6-1.1 1.5-2.4 2.1-3.8 1.8-.83-.18-1.43-.9-2.09-1.69-.9-1.11-1.87-2.19-4.32-2.19z"/></svg>
-        )
-      case 'PostgreSQL':
-        return (
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden className="text-[#336791]"><path fill="currentColor" d="M12 3c-3.5 0-7 1.4-7 5.5S8.5 18 12 21c3.5-3 7-7.1 7-12.5S15.5 3 12 3z"/></svg>
-        )
-      case 'Python':
-        return (
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden className="text-[#3776ab]"><path fill="currentColor" d="M12 2c2.2 0 4 1.8 4 4v2H8V6c0-2.2 1.8-4 4-4z"/><path fill="#ffd43b" d="M12 22c-2.2 0-4-1.8-4-4v-2h8v2c0 2.2-1.8 4-4 4z"/></svg>
-        )
-      case 'Django':
-        return (
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden className="text-[#092e20]"><rect x="4" y="4" width="16" height="16" rx="4" fill="currentColor"/></svg>
-        )
-      case 'Vite':
-        return (
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden className="text-[#646cff]"><path fill="currentColor" d="M12 2 3 6l9 16 9-16-9-4z"/></svg>
-        )
-      case 'Git':
-        return (
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden className="text-[#f05133]"><path fill="currentColor" d="M12 3 3 12l9 9 9-9-9-9z"/></svg>
-        )
-      default:
-        return (
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden className="text-slate-500"><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
-        )
+    const commonProps = "w-12 h-12 object-contain transition-transform duration-300 group-hover:scale-110"
+
+    // Map skill names to local filenames
+    const filenameMap = {
+      'React': 'react.svg',
+      'JavaScript': 'javascript.svg',
+      'HTML': 'html5.svg',
+      'Tailwind CSS': 'tailwindcss.svg',
+      'PostgreSQL': 'postgresql.svg',
+      'Python': 'python.svg',
+      'Django': 'django.svg',
+      'ERPNext': 'erpnext.svg',
+      'Frappe': 'frappe.svg',
+      'Vite': 'vite.svg',
+      'Git': 'git.svg'
     }
+
+    const filename = filenameMap[name]
+
+    if (filename) {
+      return <img src={`/images/skills/${filename}`} alt={`${name} logo`} className={commonProps} loading="lazy" />
+    }
+
+    // Fallback if no image mapping found
+    return (
+      <div className={`${commonProps} flex items-center justify-center text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-full`}>
+        <svg viewBox="0 0 24 24" className="w-8 h-8" aria-hidden fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+      </div>
+    )
   }
+
   const container = {
-    hidden: {},
+    hidden: { opacity: 0 },
     show: {
-      transition: { staggerChildren: 0.05 }
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
     }
   }
+
   const item = {
-    hidden: { opacity: 0, y: 8 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 }
   }
+
   return (
-    <section id="skills" className="py-16 sm:py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <h2 className="font-heading text-3xl font-bold">Skills</h2>
-        <p className="mt-2 text-slate-600 dark:text-slate-300">Tools and technologies I use.</p>
-        <motion.div className="mt-6 flex flex-wrap gap-3" variants={container} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+    <section id="skills" className="py-24 relative overflow-hidden">
+      {/* Background blobs */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">What I’m Good At</h2>
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            The tools and technologies that power my development workflow.
+          </p>
+        </div>
+
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-auto max-w-6xl"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {skills.map((s) => (
-            <motion.span
+            <motion.div
               key={s}
               variants={item}
-              whileHover={{ scale: 1.06 }}
-              className="chip px-3.5 py-2 text-base bg-white/80 dark:bg-white/[0.06] border border-slate-200/60 dark:border-white/10"
+              whileHover={{ y: -8 }}
+              className="group relative flex items-center gap-4 p-5 rounded-2xl bg-white/50 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-800 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 cursor-default backdrop-blur-sm"
             >
-              <span aria-hidden className="mr-2 inline-block align-[-1px]">{iconFor(s)}</span>
-              {s}
-            </motion.span>
+              <div className="flex-shrink-0 p-3 bg-white dark:bg-white/5 rounded-xl shadow-sm transition-transform duration-300">
+                {iconFor(s)}
+              </div>
+              <div>
+                <h3 className="font-bold text-lg text-slate-800 dark:text-slate-100 group-hover:text-primary transition-colors">{s}</h3>
+              </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
