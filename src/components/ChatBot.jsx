@@ -68,10 +68,7 @@ export default function ChatBot() {
 
     // Fuzzy Search with Fuse.js
     const findResponse = (userMessage) => {
-        // 1. Exact/Partial keyword match (Legacy logic kept for specific multi-word triggers)
-        const lowerMessage = userMessage.toLowerCase()
-
-        // 2. Fuse.js Fuzzy Search
+        // 1. Fuse.js Fuzzy Search
         // flatten patterns for searching
         const searchItems = responsePatterns.map((pattern, index) => ({
             ...pattern,
@@ -193,7 +190,7 @@ export default function ChatBot() {
                         <div className="flex items-center gap-3 border-b border-slate-200 dark:border-slate-700 bg-gradient-to-r from-primary to-primary/80 px-4 py-3 rounded-t-2xl">
                             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white font-bold">ES</div>
                             <div className="flex-1">
-                                <h3 className="font-semibold text-white">Edwin's AI Assistant</h3>
+                                <h3 className="font-semibold text-white">Edwin&apos;s AI Assistant</h3>
                                 <p className="text-xs text-white/80">{isTyping ? 'Typing...' : 'Online'}</p>
                             </div>
                             <div className="flex gap-2">
