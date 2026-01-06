@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import App from './App'
 
@@ -75,8 +76,10 @@ function AnimatedRoutes() {
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <AnimatedRoutes />
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <AnimatedRoutes />
+      </BrowserRouter>
+    </HelmetProvider>
   </React.StrictMode>
 )

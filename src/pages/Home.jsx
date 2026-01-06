@@ -63,9 +63,30 @@ export default function Home() {
                 </span>
                 <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight">About</h2>
               </div>
-              <p className="mt-4 text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
-                Hi, I’m Edwin stephano J, a passionate and dedicated Software Developer with a strong focus on building clean, efficient, and user-friendly applications. I love turning ideas into real, working solutions—whether it’s through modern frontend design, backend logic, or frameworks like Frappe/ERPNext that I actively explore and work with. I enjoy learning new technologies every day and constantly improving my coding skills to become a more talented and confident developer. Beyond coding, I follow simple values: consistency, curiosity, and solving problems with a calm mind. My goal is to grow into a well-rounded developer who delivers meaningful digital experiences with clean design, smooth animations, and smart functionality.
+              <p className="mt-4 text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
+                Hi, I’m <span className="font-semibold text-primary">Edwin Stephano J</span>, a passionate Software Developer dedicated to building clean, efficient, and user-friendly applications.
               </p>
+              <p className="mt-4 text-slate-600 dark:text-slate-300 text-base leading-relaxed">
+                I love turning ideas into real solutions through modern frontend design and robust backend architectures.
+              </p>
+              <div className="mt-6 grid sm:grid-cols-2 gap-4 text-slate-600 dark:text-slate-300 text-sm font-medium">
+                <div className="flex items-start gap-2">
+                  <div className="mt-1 h-2 w-2 rounded-full bg-primary" />
+                  <span>Consistency, curiosity, and calm problem-solving.</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <div className="mt-1 h-2 w-2 rounded-full bg-primary" />
+                  <span>Specialized in <strong className="text-slate-800 dark:text-slate-100">React, Django, and Frappe/ERPNext</strong>.</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <div className="mt-1 h-2 w-2 rounded-full bg-primary" />
+                  <span>Always exploring new technologies.</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <div className="mt-1 h-2 w-2 rounded-full bg-primary" />
+                  <span>Focus on smooth animations & UI polish.</span>
+                </div>
+              </div>
             </div>
           </div>
         </motion.section>
@@ -128,7 +149,7 @@ export default function Home() {
           </Suspense>
         </motion.section>
 
-        
+
 
         <motion.section
           id="certificates"
@@ -143,7 +164,7 @@ export default function Home() {
           </Suspense>
         </motion.section>
 
-        
+
 
         <motion.section
           id="contact"

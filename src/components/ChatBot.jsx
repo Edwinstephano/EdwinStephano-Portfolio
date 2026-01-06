@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { responsePatterns, defaultResponses, quickActions } from '../data/chatbotKnowledge'
+import Fuse from 'fuse.js'
 
 export default function ChatBot() {
     const [isOpen, setIsOpen] = useState(false)
@@ -65,20 +66,38 @@ export default function ChatBot() {
         }
     }
 
+    // Fuzzy Search with Fuse.js
     const findResponse = (userMessage) => {
+        // 1. Exact/Partial keyword match (Legacy logic kept for specific multi-word triggers)
         const lowerMessage = userMessage.toLowerCase()
-        for (const pattern of responsePatterns) {
-            const hasKeyword = pattern.keywords.some(keyword =>
-                lowerMessage.includes(keyword.toLowerCase())
-            )
-            if (hasKeyword) {
-                const responses = pattern.responses
-                return {
-                    text: responses[Math.floor(Math.random() * responses.length)],
-                    suggestions: pattern.suggestions || []
-                }
+
+        // 2. Fuse.js Fuzzy Search
+        // flatten patterns for searching
+        const searchItems = responsePatterns.map((pattern, index) => ({
+            ...pattern,
+            id: index
+        }))
+
+        // Configure Fuse options
+        const fuse = new Fuse(searchItems, {
+            keys: ['keywords'],
+            threshold: 0.4, // 0.0 = perfect match, 1.0 = match anything
+            ignoreLocation: true
+        })
+
+        const result = fuse.search(userMessage)
+
+        if (result.length > 0) {
+            // Get best match
+            const pattern = result[0].item
+            const responses = pattern.responses
+            return {
+                text: responses[Math.floor(Math.random() * responses.length)],
+                suggestions: pattern.suggestions || []
             }
         }
+
+        // Fallback or very loose match
         return {
             text: defaultResponses[Math.floor(Math.random() * defaultResponses.length)],
             suggestions: []

@@ -8,12 +8,12 @@ const certificates = [
     description: 'Certificate for Full Stack Development training (Python + React).'
   },
   {
-    id: 'py4e',
-    title: 'Python for Everybody',
-    issuer: 'University of Michigan',
-    date: '2023',
-    image: null,
-    description: 'Foundational Python programming course.'
+    id: 'MASTERING AI TOOLS',
+    title: 'MASTERING AI TOOLS',
+    issuer: 'Sacred Heart College(Autonomous) tirupattur',
+    date: '2024',
+    image: '/AICertificate.png',
+    description: 'Certificate for Mastering AI Tools course.'
   }
 ]
 export default certificates
