@@ -4,14 +4,14 @@
 
 /* Base styles and CSS variables for glassmorphism accents */
 :root {
-  --color-primary: #0ea5a4;
-  --color-accent: #7c3aed;
+  --color-primary: #10b981;
+  --color-accent: #14b8a6;
   --muted: #94a3b8;
 }
 
 /* Theme presets: set CSS variables; persisted in localStorage and applied as a class on <html> */
-.theme-teal { --color-primary: #0ea5a4; --color-accent: #7c3aed; }
-.theme-purple { --color-primary: #7c3aed; --color-accent: #0ea5a4; }
+.theme-teal { --color-primary: #10b981; --color-accent: #14b8a6; }
+.theme-purple { --color-primary: #8b5cf6; --color-accent: #6366f1; }
 .theme-sunset { --color-primary: #fb7185; --color-accent: #f59e0b; }
 .theme-forest { --color-primary: #10b981; --color-accent: #065f46; }
 

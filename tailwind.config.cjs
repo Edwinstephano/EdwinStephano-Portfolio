@@ -5,8 +5,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#0ea5a4',
-        accent: '#7c3aed',
+        // Emerald / teal primary with dark background
+        primary: '#10b981', // emerald
+        accent: '#14b8a6', // teal accent
         neutral: '#0f172a',
         muted: '#94a3b8',
         lightbg: '#f8fafc'

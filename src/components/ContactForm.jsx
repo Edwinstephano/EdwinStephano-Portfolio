@@ -78,6 +78,33 @@ export default function ContactForm() {
           <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
             Got a project or idea you'd like to discuss? Fill out the form below.
           </p>
+          <div className="mt-4 flex items-center justify-center gap-5 text-sm">
+            <a
+              href="mailto:stephanoedwin8@gmail.com"
+              className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-300 hover:text-primary transition-colors"
+            >
+              <span className="h-2 w-2 rounded-full bg-primary" aria-hidden />
+              <span>Email</span>
+            </a>
+            <a
+              href="https://github.com/Edwinstephano"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-300 hover:text-primary transition-colors"
+            >
+              <span className="h-2 w-2 rounded-full bg-primary" aria-hidden />
+              <span>GitHub</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/edwin-stephano-8059992ab/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-300 hover:text-primary transition-colors"
+            >
+              <span className="h-2 w-2 rounded-full bg-primary" aria-hidden />
+              <span>LinkedIn</span>
+            </a>
+          </div>
         </div>
 
         {/* Form Card */}

@@ -1,5 +1,6 @@
 const skills = [
   'React',
+  'CSS',
   'Python',
   'ERPNext',
   'Frappe',
@@ -9,5 +10,7 @@ const skills = [
   'Tailwind CSS',
   'Vite',
   'Git',
+  'GitHub',
+  'VS Code',
 ]
 export default skills

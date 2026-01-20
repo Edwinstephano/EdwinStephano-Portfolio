@@ -84,19 +84,41 @@ export default function ProjectCard({ project, index }) {
           transition={{ duration: 0.25 }}
         />
       </motion.div>
-      <div className="p-5">
+      <div className="p-5 flex flex-col gap-3">
         <h3 id={`project-${project.slug}`} className="font-heading text-xl font-semibold">
           <Link to={`/projects/${project.slug}`} className="hover:underline">
             {project.title}
           </Link>
         </h3>
-        <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{project.description}</p>
-        <div className="mt-3 flex flex-wrap gap-2">
+        <p className="text-sm text-slate-600 dark:text-slate-300">{project.description}</p>
+        <div className="flex flex-wrap gap-2">
           {project.tech.map((t) => (
             <span key={t} className="chip">{t}</span>
           ))}
         </div>
-       
+        <div className="mt-2 flex flex-wrap gap-3">
+          {project.live && project.live !== '#' && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-primary shine inline-flex items-center gap-2 px-3 py-1.5 text-sm"
+            >
+              <span>Live</span>
+              <ExternalLinkIcon className="w-4 h-4" />
+            </a>
+          )}
+          {project.code && project.code !== '#' && (
+            <a
+              href={project.code}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-secondary shine inline-flex items-center gap-2 px-3 py-1.5 text-sm"
+            >
+              <span>Code</span>
+            </a>
+          )}
+        </div>
       </div>
     </motion.article>
   )

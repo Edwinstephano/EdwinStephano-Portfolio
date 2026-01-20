@@ -10,8 +10,7 @@ const navItems = [
   { href: '/#skills', label: 'Skills' },
   { href: '/#experience', label: 'Experience' },
   { href: '/#contact', label: 'Contact' },
-  { href: '/projects', label: 'All Projects' },
-  { href: '/blog', label: 'Blog' }
+  { href: '/projects', label: 'All Projects' }
 ]
 
 export default function Header() {
@@ -53,7 +52,9 @@ export default function Header() {
   }, [lastY])
 
   return (
-    <header className={`sticky top-0 z-50 backdrop-blur border-b border-slate-200/60 dark:border-white/10 bg-white/70 dark:bg-neutral/60 transition-transform duration-300 ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
+    <header
+      className={`sticky top-0 z-50 backdrop-blur border-b border-slate-200/60 dark:border-white/10 bg-white/70 dark:bg-neutral/80/80 transition-transform duration-300 ${hidden ? '-translate-y-full' : 'translate-y-0'}`}
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2 font-heading text-lg font-bold">

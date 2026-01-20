@@ -46,10 +46,28 @@ const knowledge = {
             type: 'Education'
         },
         {
-            name: 'HR Management System',
-            description: 'Enterprise HR system with attendance tracking and leave management',
-            tech: ['React', 'Django', 'Frappe', 'ERPNext'],
+            name: 'HR Management System (ERPNext)',
+            description: 'Enterprise HR solution built on Frappe/ERPNext with attendance, payroll, and performance management',
+            tech: ['ERPNext', 'Frappe Framework', 'Python', 'MariaDB', 'JavaScript'],
             type: 'Enterprise'
+        },
+        {
+            name: 'Task Tracker (Frappe)',
+            description: 'Task management app for creating, assigning, and tracking tasks with role-based access',
+            tech: ['Frappe Framework', 'Python', 'JavaScript', 'MariaDB', 'HTML', 'CSS'],
+            type: 'Productivity'
+        },
+        {
+            name: 'School Management System',
+            description: 'Comprehensive school management platform for students, staff, attendance, exams, and fees',
+            tech: ['React', 'Django', 'Tailwind CSS', 'PostgreSQL'],
+            type: 'Education'
+        },
+        {
+            name: 'Developer Portfolio',
+            description: 'Modern portfolio site with React, Tailwind CSS, Framer Motion animations, and an AI chatbot',
+            tech: ['React', 'Tailwind CSS', 'Framer Motion', 'Three.js', 'Vite'],
+            type: 'Portfolio'
         }
     ],
 
@@ -74,6 +92,24 @@ export const responsePatterns = [
             `Hi there! 👋 I'm Edwin's AI assistant. I can help you learn about his skills, projects, and experience. What would you like to know?`,
             `Hello! 😊 I'm here to answer questions about Edwin's work. Feel free to ask about his projects, skills, or experience!`,
             `Hey! 👋 Welcome! I can tell you all about Edwin's development work. What interests you?`
+        ]
+    },
+
+    // Developer lifecycle / workflow
+    {
+        keywords: ['development process', 'workflow', 'lifecycle', 'sdlc', 'how do you work'],
+        responses: [
+            `Edwin follows a practical developer lifecycle:\n1️⃣ **Understand the problem** – clarify requirements and constraints\n2️⃣ **Plan the solution** – sketch data models, APIs, and UI flows\n3️⃣ **Build iteratively** – implement features in small, testable chunks\n4️⃣ **Test & fix** – verify behavior, handle edge cases, and refine UX\n5️⃣ **Review & refactor** – clean up code, improve structure, and document\n6️⃣ **Deploy & monitor** – ship to production and watch for issues\n\nThis helps him ship reliable, maintainable applications.`,
+            `His typical dev workflow looks like this:\n• Break features into small tasks\n• Start with core functionality, then add UI polish\n• Use Git branches and meaningful commits\n• Test on different devices and screen sizes\n• Gather feedback and iterate\n\nA calm, step-by-step approach that fits real-world projects.`
+        ]
+    },
+
+    // General developer knowledge / best practices
+    {
+        keywords: ['developer knowledge', 'best practices', 'how to be a good developer', 'advice', 'tips'],
+        responses: [
+            `Some of the principles Edwin follows as a developer:\n• **Start simple** – solve the core problem before adding complexity\n• **Write readable code** – clear names, small functions, consistent style\n• **Think about the user** – fast, accessible, mobile-friendly UIs\n• **Use the right tools** – React, Django, Frappe/ERPNext, Tailwind, Git\n• **Keep learning** – new patterns, libraries, and feedback from real users\n\nGood development is a mix of skills, discipline, and curiosity.`,
+            `Developer mindset matters! Edwin focuses on:\n• Understanding *why* a feature is needed\n• Choosing simple, robust solutions\n• Communicating clearly with teams and clients\n• Reviewing and improving his own code\n• Balancing speed with long-term maintainability\n\nThose habits help him grow steadily as a software developer.`
         ]
     },
 
@@ -178,6 +214,24 @@ export const responsePatterns = [
         keywords: ['hr system', 'hr management', 'attendance', 'leave'],
         responses: [
             `The HR Management System is an enterprise solution built with Frappe/ERPNext:\n• Attendance tracking\n• Leave management\n• Employee workflows\n• Real-time updates\n• Role-based permissions\n\nCurrently in active development at BoscoSoft!`
+        ]
+    },
+
+    // Task Tracker (Frappe)
+    {
+        keywords: ['task tracker', 'tasks', 'to-do', 'frappe task'],
+        responses: [
+            `The Task Tracker project is built on the Frappe Framework:\n• Create and assign tasks to users\n• Track status (Open, In Progress, Completed)\n• Set priorities and due dates\n• Role-based access control\n• Task reports and dashboard view\n\nIt showcases Edwin's backend and ERP-style workflow skills.`,
+            `Edwin's Task Tracker app helps teams stay organized:\n• Built using Frappe Framework and Python\n• Clean UI for managing tasks\n• Designed for real-world team workflows\n\nGreat example of his productivity tooling experience!`
+        ]
+    },
+
+    // School Management System
+    {
+        keywords: ['school management', 'school system', 'sms project', 'students', 'fees'],
+        responses: [
+            `The School Management System is a full-stack app built with React and Django:\n• Student records and profiles\n• Attendance tracking\n• Examination and results management\n• Fee management\n• Staff administration\n\nIt centralizes academic and administrative workflows in one platform.`,
+            `Edwin's School Management System automates key school operations:\n• Frontend: React + Tailwind CSS\n• Backend: Django + PostgreSQL\n• Focus on usability for staff and admins\n\nA solid example of his end-to-end application design.`
         ]
     },
 
@@ -336,6 +390,15 @@ export const responsePatterns = [
         ]
     },
 
+    // Day in the life as a developer
+    {
+        keywords: ['day in the life', 'typical day', 'daily routine', 'what do you do every day'],
+        responses: [
+            `A typical dev day for Edwin looks like:\n• Reviewing tasks and priorities\n• Implementing new features or fixing bugs\n• Collaborating via standups or messages\n• Testing changes in the browser and backend\n• Refactoring or improving existing code\n• Learning something new or exploring ideas\n\nA steady mix of building, improving, and learning.`,
+            `On most days, Edwin:\n• Starts by checking open issues and pull requests\n• Focuses on 1–2 important tasks instead of multitasking\n• Communicates progress with his team\n• Keeps an eye on UX details and performance\n• Ends by planning the next small steps\n\nConsistent habits help him move projects forward.`,
+        ]
+    },
+
     // Learning/Growth
     {
         keywords: ['learning', 'growth', 'improve', 'studying', 'courses'],
@@ -353,6 +416,60 @@ export const responsePatterns = [
             `Edwin loves turning ideas into working solutions! His passion for development shows in his projects. Interested in seeing his work?`
         ],
         suggestions: ['Show me projects', 'Tell me about skills']
+    },
+
+    // Working with clients
+    {
+        keywords: ['clients', 'work with clients', 'freelance clients', 'requirements gathering'],
+        responses: [
+            `When working with clients, Edwin focuses on:\n• Clarifying goals and constraints early\n• Breaking work into clear milestones\n• Communicating progress regularly\n• Giving honest feedback on feasibility\n• Delivering small, testable increments\n\nThis helps keep projects on track and avoids surprises.`,
+            `His client workflow usually is:\n1️⃣ Understand the business problem\n2️⃣ Propose a simple, practical solution\n3️⃣ Agree on scope and priorities\n4️⃣ Build and demo features in small batches\n5️⃣ Collect feedback and iterate\n\nGood communication is as important as good code.`,
+        ]
+    },
+
+    // Code review style
+    {
+        keywords: ['code review', 'review code', 'pull request review'],
+        responses: [
+            `In code reviews, Edwin looks for:\n• Clear, readable code\n• Simple solutions over clever hacks\n• Proper separation of concerns\n• Safe changes that are easy to rollback\n• Helpful comments and documentation\n\nThe goal is to improve the code, not criticize the person.`,
+            `His review style is collaborative:\n• Ask questions instead of making assumptions\n• Suggest improvements with examples\n• Focus on behavior and impact\n• Celebrate good ideas\n\nCode review is about learning together and raising quality.`,
+        ]
+    },
+
+    // Advice for junior developers
+    {
+        keywords: ['junior developer', 'beginner advice', 'getting started', 'how to start coding'],
+        responses: [
+            `Edwin's advice for juniors:\n• Start with small, real projects (not just tutorials)\n• Learn the fundamentals: JavaScript, HTML, CSS, Git\n• Read other people's code and ask questions\n• Focus on one main stack at a time (for example, React and Django)\n• Be patient with yourself – progress is gradual\n\nConsistency beats intensity.`,
+            `If you're starting out:\n• Build simple apps: todo, notes, small dashboards\n• Practice turning ideas into user interfaces\n• Learn how to debug calmly\n• Share your work on GitHub\n• Keep a learning journal\n\nYour portfolio will grow as your skills grow.`,
+        ]
+    },
+
+    // Portfolio & recruiters
+    {
+        keywords: ['recruiter', 'cv', 'resume', 'portfolio tips', 'get hired'],
+        responses: [
+            `For recruiters, Edwin believes a good portfolio should:\n• Show three to five strong, real projects\n• Clearly state your role and tech stack\n• Explain the problem and the impact\n• Be easy to navigate on mobile\n• Match the story in your resume\n\nQuality projects matter more than long lists of buzzwords.`,
+            `If you're a recruiter viewing this portfolio:\n• You will see React, Django, Frappe and ERPNext, and Tailwind in action\n• Projects cover e-commerce, HR, education, and productivity\n• The design highlights performance and user experience\n\nFeel free to use the contact form to start a conversation.`,
+        ]
+    },
+
+    // Interview preparation
+    {
+        keywords: ['interview', 'prepare for interview', 'interview tips'],
+        responses: [
+            `For interviews, Edwin focuses on:\n• Knowing his own projects deeply\n• Being honest about what he knows and does not know\n• Explaining decisions and trade-offs\n• Talking through how he debugs and learns\n\nReal experience and clear thinking matter more than memorized answers.`,
+            `His interview preparation mindset:\n• Review recent projects and key challenges\n• Practice explaining concepts simply\n• Refresh the basics (JavaScript, HTTP, databases)\n• Prepare questions about the team and work\n\nInterviews are two-way: fit matters for both sides.`,
+        ]
+    },
+
+    // Motivation and mindset
+    {
+        keywords: ['motivation', 'mindset', 'stay motivated', 'burnout'],
+        responses: [
+            `Edwin stays motivated by:\n• Working on projects that solve real problems\n• Breaking big tasks into tiny steps\n• Celebrating small wins\n• Taking breaks before burning out\n• Remembering that learning takes time\n\nSoftware development is a marathon, not a sprint.`,
+            `His mindset as a developer:\n• Be curious, not afraid to say "I do not know"\n• Treat bugs as puzzles, not failures\n• Learn a little bit every day\n• Focus on helping users, not just using tools\n\nThis keeps him growing without losing the joy of building.`,
+        ]
     },
 
     // Strengths
@@ -407,6 +524,15 @@ export const responsePatterns = [
         responses: [
             `Edwin understands the importance of testing! His development process includes:\n• Manual testing\n• Debugging with browser tools\n• Responsive design testing\n• Cross-browser compatibility\n• User acceptance testing\n\nEnsuring quality deliverables!`,
             `Testing is part of his workflow! He ensures applications work correctly across devices and browsers. Want to know more about his development process?`
+        ]
+    },
+
+    // Debugging style
+    {
+        keywords: ['how do you debug', 'debugging process', 'fix bugs', 'bug fixing'],
+        responses: [
+            `When debugging, Edwin:\n1️⃣ Reproduces the issue clearly\n2️⃣ Checks logs, browser devtools, and network requests\n3️⃣ Isolates the smallest piece of code that fails\n4️⃣ Uses console logs or breakpoints to inspect state\n5️⃣ Fixes the root cause (not just the symptom)\n6️⃣ Adds or adjusts tests to prevent regressions\n\nA calm, methodical approach instead of random guessing.`,
+            `His debugging mindset:\n• First understand *what* is actually happening\n• Then compare it to *what should* happen\n• Narrow down the suspect area step by step\n• Add small, reversible changes\n• Verify on different paths and devices\n\nThis keeps bugs under control, even in complex apps.`,
         ]
     },
 

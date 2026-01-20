@@ -6,6 +6,7 @@ import { Suspense, lazy } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { SunIcon } from '../components/Icons'
+import { Helmet } from 'react-helmet-async'
 
 const Skills = lazy(() => import('../components/Skills'))
 const Experience = lazy(() => import('../components/Experience'))
@@ -24,6 +25,13 @@ export default function Home() {
   }
   return (
     <div className="relative">
+      <Helmet>
+        <title>Edwin Stephano | Software Developer &amp; Web Developer</title>
+        <meta
+          name="description"
+          content="Portfolio of Edwin Stephano – Software Developer and Web Developer crafting modern, performant web apps with React, Python, and clean UI/UX."
+        />
+      </Helmet>
       <Aurora />
       <main id="content" className="block" aria-labelledby="home">
         <motion.section
