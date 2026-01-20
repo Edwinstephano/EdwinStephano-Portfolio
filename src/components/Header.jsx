@@ -53,7 +53,7 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 backdrop-blur border-b border-slate-200/60 dark:border-white/10 bg-white/70 dark:bg-neutral/80/80 transition-transform duration-300 ${hidden ? '-translate-y-full' : 'translate-y-0'}`}
+      className={`sticky top-0 z-50 backdrop-blur border-b border-slate-200/60 dark:border-white/10 bg-white/70 dark:bg-neutral/90 text-slate-900 dark:text-slate-100 transition-transform duration-300 ${hidden ? '-translate-y-full' : 'translate-y-0'}`}
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
@@ -133,7 +133,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-slate-200/60 dark:border-white/10 bg-white/80 dark:bg-neutral/70 backdrop-blur">
+        <div className="md:hidden border-t border-slate-200/60 dark:border-white/10 bg-white/80 dark:bg-neutral/90 backdrop-blur text-slate-900 dark:text-slate-100">
           <div className="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-2">
             {navItems.map((n) =>
               n.href.startsWith('/#') ? (
